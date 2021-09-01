@@ -3,7 +3,6 @@ package br.com.zupacademy.antonio.mercadolivre.controller.form;
 import br.com.zupacademy.antonio.mercadolivre.model.Usuario;
 import br.com.zupacademy.antonio.mercadolivre.security.SenhaLimpa;
 import br.com.zupacademy.antonio.mercadolivre.validate.ItemGenericoUnico;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
