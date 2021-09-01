@@ -1,5 +1,7 @@
 package br.com.zupacademy.antonio.mercadolivre.model;
 
+import br.com.zupacademy.antonio.mercadolivre.security.SenhaLimpa;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -21,9 +23,9 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String login, String senha) {
+    public Usuario(String login, SenhaLimpa senhaLimpa) {
         this.login = login;
-        this.senha = senha;
+        this.senha = senhaLimpa.hash();
     }
 
     public Long getId() {

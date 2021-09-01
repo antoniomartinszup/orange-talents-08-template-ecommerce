@@ -1,6 +1,7 @@
 package br.com.zupacademy.antonio.mercadolivre.controller.form;
 
 import br.com.zupacademy.antonio.mercadolivre.model.Usuario;
+import br.com.zupacademy.antonio.mercadolivre.security.SenhaLimpa;
 import br.com.zupacademy.antonio.mercadolivre.validate.ItemGenericoUnico;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -19,13 +20,13 @@ public class UsuarioForm {
     @Size(min = 6)
     private String senha;
 
-    public UsuarioForm(String login, String senha) {
+    public UsuarioForm(String login, @NotEmpty @Size(min = 6) String senha) {
         this.login = login;
-        this.senha = new BCryptPasswordEncoder().encode(senha);
+        this.senha = senha;
     }
 
     public Usuario converteParaModelUsuario() {
-        return new Usuario(this.login, this.senha);
+        return new Usuario(this.login, new SenhaLimpa(senha));
     }
 
     public String getLogin() {
