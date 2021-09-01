@@ -11,9 +11,9 @@ import javax.validation.constraints.Size;
 
 public class UsuarioForm {
 
+    @ItemGenericoUnico(domainClass = Usuario.class, fieldName = "login")
     @NotEmpty
     @Email
-    @ItemGenericoUnico(domainClass = Usuario.class, fieldName = "login")
     private String login;
 
     @NotEmpty
