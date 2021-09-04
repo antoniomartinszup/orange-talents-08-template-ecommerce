@@ -19,6 +19,12 @@ public class UsuarioDto {
         this.dataRegistro = dataRegistro;
     }
 
+    public UsuarioDto(Usuario usuario) {
+        this.id = usuario.getId();
+        this.login = usuario.getLogin();
+        this.dataRegistro = usuario.getDataRegistro();
+    }
+
     public static UsuarioDto converteParaUsuarioDto(Usuario usuario) {
         return new UsuarioDto(usuario.getId(), usuario.getLogin(), usuario.getDataRegistro());
     }
