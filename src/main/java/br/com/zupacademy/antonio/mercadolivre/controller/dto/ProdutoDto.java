@@ -1,10 +1,12 @@
 package br.com.zupacademy.antonio.mercadolivre.controller.dto;
 
+import br.com.zupacademy.antonio.mercadolivre.model.Imagem;
 import br.com.zupacademy.antonio.mercadolivre.model.Produto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoDto {
@@ -20,6 +22,7 @@ public class ProdutoDto {
     @JsonFormat(pattern = "HH:mm:ss dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDateTime dataRegistro;
     private UsuarioDto usuario;
+    private List<String> imagensLinks = new ArrayList<>();
 
     public ProdutoDto(Produto produto) {
         this.id = produto.getId();
@@ -31,6 +34,9 @@ public class ProdutoDto {
         this.categoria = new CategoriaDto(produto.getCategoria());
         this.dataRegistro = produto.getDataRegistro();
         this.usuario = new UsuarioDto(produto.getUsuario());
+        for (Imagem imagem : produto.getImagens()) {
+            this.imagensLinks.add(imagem.getLink());
+        }
     }
 
     public Long getId() {
@@ -67,5 +73,9 @@ public class ProdutoDto {
 
     public UsuarioDto getUsuario() {
         return usuario;
+    }
+
+    public List<String> getImagensLinks() {
+        return imagensLinks;
     }
 }

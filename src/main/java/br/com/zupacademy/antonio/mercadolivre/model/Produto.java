@@ -6,7 +6,10 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Produto {
@@ -37,6 +40,9 @@ public class Produto {
     @ManyToOne
     private Usuario usuario;
 
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+    private Set<Imagem> imagens = new HashSet<>();
+
     @Deprecated
     public Produto() {
     }
@@ -50,6 +56,18 @@ public class Produto {
         this.descricao = descricao;
         this.categoria = categoria;
         this.usuario = usuario;
+    }
+
+    public void anexaImagens(Set<String> links) {
+        Set<Imagem> imagens = links.stream()
+                .map(link -> new Imagem(link,this))
+                .collect(Collectors.toSet());
+
+        this.imagens.addAll(imagens);
+    }
+
+    public boolean pertenceAoUsuario(Long id) {
+        return this.id.equals(id);
     }
 
     public Long getId() {
@@ -86,5 +104,9 @@ public class Produto {
 
     public Usuario getUsuario() {
         return usuario;
+    }
+
+    public Set<Imagem> getImagens() {
+        return imagens;
     }
 }
