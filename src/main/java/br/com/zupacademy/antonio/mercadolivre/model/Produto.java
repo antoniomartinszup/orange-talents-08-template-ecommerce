@@ -66,6 +66,14 @@ public class Produto {
         this.imagens.addAll(imagens);
     }
 
+    public Boolean reduzEstoque(Integer quantidadeVenda) {
+        if (this.quantidade >= quantidadeVenda) {
+            this.quantidade -= quantidadeVenda;
+            return true;
+        }
+        return false;
+    }
+
     public boolean pertenceAoUsuario(Long id) {
         return this.id.equals(id);
     }
