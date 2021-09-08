@@ -6,6 +6,7 @@ import br.com.zupacademy.antonio.mercadolivre.model.Produto;
 import br.com.zupacademy.antonio.mercadolivre.model.Usuario;
 import br.com.zupacademy.antonio.mercadolivre.repository.CompraRepository;
 import br.com.zupacademy.antonio.mercadolivre.repository.ProdutoRepository;
+import br.com.zupacademy.antonio.mercadolivre.util.EncaminhaEmails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +42,8 @@ public class CompraController {
             if (diminuiEstoque) {
                 Compra compra = compraForm.converteParaModelCompra(produto, usuario);
                 compraRepository.save(compra);
-                System.out.println("Enviar email ao vendedor: " + compra.getUsuario().getUsername());
+
+                EncaminhaEmails.compraNova(compra.getProduto().getUsuario(), usuario, compra);
 
                 String url = compra.getGateway().direcionandoGateway(uriComponentsBuilder, compra);
                 return ResponseEntity.status(HttpStatus.MOVED_TEMPORARILY).body(url);

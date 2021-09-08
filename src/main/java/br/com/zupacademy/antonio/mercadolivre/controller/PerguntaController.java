@@ -7,6 +7,7 @@ import br.com.zupacademy.antonio.mercadolivre.model.Produto;
 import br.com.zupacademy.antonio.mercadolivre.model.Usuario;
 import br.com.zupacademy.antonio.mercadolivre.repository.PerguntaRepository;
 import br.com.zupacademy.antonio.mercadolivre.repository.ProdutoRepository;
+import br.com.zupacademy.antonio.mercadolivre.util.EncaminhaEmails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,7 @@ public class PerguntaController {
         if (produtoId.isPresent()) {
             Produto produto = produtoId.get();
             Pergunta perguntaSalvo = perguntaRepository.save(perguntaForm.converteParaModelPergunta(usuario, produto));
-            System.out.println("Enviar email para: " + perguntaSalvo.getProduto().getUsuario().getLogin());
+            EncaminhaEmails.perguntaNova(produto.getUsuario(), usuario);
             return ResponseEntity.ok().body(new PerguntaDto(perguntaSalvo));
         }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Registro do produto não encontrado");

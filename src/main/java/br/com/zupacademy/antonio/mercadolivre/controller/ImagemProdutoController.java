@@ -1,6 +1,6 @@
 package br.com.zupacademy.antonio.mercadolivre.controller;
 
-import br.com.zupacademy.antonio.mercadolivre.uploader.ImagemUploaderFake;
+import br.com.zupacademy.antonio.mercadolivre.util.ImagemUploaderFake;
 import br.com.zupacademy.antonio.mercadolivre.controller.dto.ProdutoDto;
 import br.com.zupacademy.antonio.mercadolivre.controller.form.ImagemForm;
 import br.com.zupacademy.antonio.mercadolivre.model.Produto;

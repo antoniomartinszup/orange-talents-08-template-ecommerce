@@ -117,4 +117,14 @@ public class Produto {
     public Set<Imagem> getImagens() {
         return imagens;
     }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", valor=" + valor +
+                ", dataRegistro=" + dataRegistro +
+                '}';
+    }
 }

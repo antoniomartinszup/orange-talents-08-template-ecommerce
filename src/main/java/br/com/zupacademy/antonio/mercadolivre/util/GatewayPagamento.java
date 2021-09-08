@@ -1,4 +1,4 @@
-package br.com.zupacademy.antonio.mercadolivre.controller.util;
+package br.com.zupacademy.antonio.mercadolivre.util;
 
 import br.com.zupacademy.antonio.mercadolivre.model.Compra;
 import org.springframework.web.util.UriComponentsBuilder;

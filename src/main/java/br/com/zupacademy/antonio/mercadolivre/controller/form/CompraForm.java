@@ -1,6 +1,6 @@
 package br.com.zupacademy.antonio.mercadolivre.controller.form;
 
-import br.com.zupacademy.antonio.mercadolivre.controller.util.GatewayPagamento;
+import br.com.zupacademy.antonio.mercadolivre.util.GatewayPagamento;
 import br.com.zupacademy.antonio.mercadolivre.model.Compra;
 import br.com.zupacademy.antonio.mercadolivre.model.Produto;
 import br.com.zupacademy.antonio.mercadolivre.model.Usuario;
